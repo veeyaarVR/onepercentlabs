@@ -10,7 +10,7 @@
 <meta property="og:description" content="Coming soon.">
 <meta property="og:type" content="website">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%E2%9C%B3</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2238%22 fill=%22none%22 stroke=%22%236b6b7c%22 stroke-width=%223%22 opacity=%220.5%22/><line x1=%2250%22 y1=%226%22 x2=%2250%22 y2=%2222%22 stroke=%22%236366f1%22 stroke-width=%229%22 stroke-linecap=%22round%22/></svg>">
 
 <style>
   :root {
@@ -76,6 +76,13 @@
     color: var(--accent);
   }
 
+  .mark {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 28px;
+    display: block;
+  }
+
   footer {
     position: fixed;
     bottom: 28px;
@@ -91,6 +98,10 @@
 <body>
   <div class="glow"></div>
   <main>
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="38" fill="none" stroke="var(--muted)" stroke-width="3" opacity="0.45"/>
+      <line x1="50" y1="6" x2="50" y2="22" stroke="var(--accent)" stroke-width="9" stroke-linecap="round"/>
+    </svg>
     <h1>One Percent Labs<span class="dot">.</span></h1>
     <p>Something is on the way. Coming soon.</p>
   </main>
