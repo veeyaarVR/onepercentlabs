@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import { products } from '../data/site';
+---
+
+<section class="section" id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label live-label">Live now</p>
+      <h2>Our Products</h2>
+    </div>
+
+    <div class="apps">
+      {products.map((product) => (
+        <article class="app">
+          <div class="app-icon">
+            {product.icon ? (
+              <Image src={product.icon} alt={`${product.name} app icon`} width={176} height={176} />
+            ) : (
+              <span aria-label="App icon placeholder, 512 by 512 pixels">
+                512 × 512
+                <br />
+                icon
+              </span>
+            )}
+          </div>
+          <div class="app-body">
+            <h3 class="app-name">{product.name}</h3>
+            <p class="app-line">{product.line}</p>
+            <p class="app-desc">{product.description}</p>
+          </div>
+          <a
+            class="app-go"
+            href={product.href}
+            target="_blank"
+            rel="noopener"
+            aria-label={`Open ${product.name} on Google Play`}
+            title={`${product.name} on Google Play`}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .live-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .live-label::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ok);
+  }
+
+  .apps {
+    display: flex;
+    flex-direction: column;
+  }
+  .app {
+    --icon: 88px;
+    display: grid;
+    grid-template-columns: var(--icon) minmax(0, 1fr) auto;
+    gap: 8px 28px;
+    padding-block: 32px;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .app:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .app-icon {
+    width: var(--icon);
+    aspect-ratio: 1;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px dashed var(--muted);
+    background: var(--surface);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .app-icon:has(img) {
+    border: 0;
+  }
+  .app-icon :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .app-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .app-name {
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+  }
+  .app-line {
+    color: var(--fg);
+  }
+  .app-desc {
+    color: var(--muted);
+    max-width: 56ch;
+  }
+  .app-go {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--fg);
+    text-decoration: none;
+    align-self: center;
+  }
+  .app-go svg {
+    width: 18px;
+    height: 18px;
+  }
+  .app-go:hover {
+    border-color: var(--accent);
+    color: var(--accent-text);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .app-go,
+    .app-go svg {
+      transition:
+        transform 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
+    .app-go:hover svg {
+      transform: translateX(2px);
+    }
+  }
+  @media (max-width: 640px) {
+    .app {
+      --icon: 72px;
+      grid-template-columns: var(--icon) minmax(0, 1fr);
+      gap: 8px 18px;
+    }
+    .app-icon {
+      border-radius: 18px;
+    }
+    .app-go {
+      grid-column: 2;
+      justify-self: start;
+      margin-top: 8px;
+    }
+  }
+</style>

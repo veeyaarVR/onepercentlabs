@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import Products from '../components/Products.astro';
+import WorkWithMe from '../components/WorkWithMe.astro';
+import Founder from '../components/Founder.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<BaseLayout>
+  <SiteHeader />
+  <main id="top">
+    <Hero />
+    <Products />
+    <WorkWithMe />
+    <Founder />
+  </main>
+  <SiteFooter />
+</BaseLayout>

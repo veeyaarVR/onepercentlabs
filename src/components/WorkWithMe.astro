@@ -1,0 +1,159 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section" id="work">
+  <div class="wrap two-col">
+    <div class="work-copy">
+      <p class="label">Work with me</p>
+      <h2>Have an idea? I can build it.</h2>
+      <p>
+        I'm a solo developer, so you talk to the person writing the code. Projects are paid. I quote
+        each one after a short conversation, so you know the cost before I start.
+      </p>
+      <ul class="build-list">
+        <li>Mobile apps</li>
+        <li>Small-scale websites</li>
+      </ul>
+      <p class="motto">
+        Small steps compound. I ship in small, working pieces so you see progress early.
+      </p>
+      <p>
+        One developer means a few projects at a time. If I'm full, I'll say so and give you a real
+        start date.
+      </p>
+    </div>
+
+    <div class="contact-card" data-contact>
+      <p class="label">Email me your idea</p>
+      <h3>I can build your ideas.</h3>
+      <p class="ask">Send a few lines about what you want to make and who it's for.</p>
+      <a class="email" href={`mailto:${site.email}`} data-email>
+        {site.email}
+      </a>
+      <div class="contact-row">
+        <button class="btn btn-ghost" type="button" data-copy>
+          Copy address
+        </button>
+        <span class="copy-status" role="status" aria-live="polite" data-copy-status></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const card = document.querySelector<HTMLElement>('[data-contact]');
+  const button = card?.querySelector<HTMLButtonElement>('[data-copy]');
+  const email = card?.querySelector<HTMLElement>('[data-email]');
+  const status = card?.querySelector<HTMLElement>('[data-copy-status]');
+
+  button?.addEventListener('click', async () => {
+    if (!email || !status) return;
+    try {
+      await navigator.clipboard.writeText(email.textContent?.trim() ?? '');
+      status.textContent = 'Copied';
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(email);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      status.textContent = 'Address selected. Copy it with your keyboard.';
+    }
+  });
+</script>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 800px) {
+    .two-col {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+  }
+  .work-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .work-copy p {
+    color: var(--muted);
+    max-width: 46ch;
+  }
+  .work-copy p.label {
+    max-width: none;
+  }
+  .build-list {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--line);
+    max-width: 46ch;
+  }
+  .build-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .motto {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 32px 28px;
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  }
+  .contact-card h3 {
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .ask {
+    color: var(--muted);
+    max-width: 36ch;
+  }
+  .email {
+    font-family: var(--font-mono);
+    font-size: clamp(0.8125rem, 3.4vw, 1.0625rem);
+    font-weight: 500;
+    color: var(--fg);
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-text);
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--accent-text);
+    padding: 9px 16px;
+    font-size: 0.9375rem;
+  }
+  .copy-status {
+    font-size: 0.875rem;
+    color: var(--accent-text);
+    min-height: 1.3em;
+  }
+</style>

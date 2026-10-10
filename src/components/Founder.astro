@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets';
+import { founder } from '../data/site';
+---
+
+<section class="section" id="about">
+  <div class="wrap founder">
+    <div class="photo">
+      {founder.photo ? (
+        <Image src={founder.photo} alt={`Portrait of ${founder.name}`} width={440} height={440} />
+      ) : (
+        <div class="placeholder" role="img" aria-label="Placeholder for the founder's photo">
+          <span class="initials">{founder.initials}</span>
+          <span class="label">Your photo here</span>
+        </div>
+      )}
+    </div>
+    <div class="copy">
+      <p class="label">Founder</p>
+      <h2>{founder.name}</h2>
+      {founder.bio.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+      <a class="text-link" href={founder.website} target="_blank" rel="noopener">
+        {founder.website.replace('https://www.', '')} ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .founder {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .photo {
+    aspect-ratio: 1;
+    max-width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .photo :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    border: 1px dashed var(--line);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--surface);
+  }
+  .initials {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: -0.02em;
+    color: var(--accent-text);
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .copy p:not(.label) {
+    color: var(--muted);
+    max-width: 54ch;
+  }
+  @media (max-width: 700px) {
+    .founder {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+    .photo {
+      max-width: 200px;
+    }
+  }
+</style>
