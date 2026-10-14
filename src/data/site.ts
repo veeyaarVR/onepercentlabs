@@ -42,7 +42,7 @@ export const products: Product[] = [
     description:
       'Set a daily target, get an alert when you pass it, and see which apps you reach for most.',
     icon: timewiseIcon,
-    href: 'https://play.google.com/store/apps/details?id=com.veeraakurilil.timewise',
+    href: 'https://vigneshmarimuthu.com/apps/timewise',
   },
   {
     name: 'MemDeck',
@@ -50,7 +50,7 @@ export const products: Product[] = [
     description:
       'Spaced-repetition flashcards on the SM-2 schedule, with a daily shuffle, weak-spot practice, streaks and sync. No ads.',
     icon: memdeckIcon,
-    href: 'https://play.google.com/store/apps/details?id=com.devveeraa.memdeck',
+    href: 'https://vigneshmarimuthu.com/apps/memdeck',
   },
   {
     name: 'History Notes',
